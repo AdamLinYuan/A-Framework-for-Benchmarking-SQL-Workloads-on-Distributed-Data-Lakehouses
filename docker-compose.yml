@@ -1,0 +1,22 @@
+services:
+  trino:
+    image: trinodb/trino:latest
+    container_name: trino-coordinator
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino/conf/catalog:/etc/trino/catalog:ro
+      - ./data/warehouse:/data/warehouse
+    environment:
+      - TRINO_ENVIRONMENT=development
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/v1/info || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+volumes:
+  warehouse_data:
+    driver: local
