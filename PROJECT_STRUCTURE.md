@@ -4,8 +4,7 @@
 /Users/adamyuan/Documents/UofG/Yr 4/Dissertation/Code/
 ├── docker-compose.yml          # Main Docker configuration
 ├── requirements.txt            # Python dependencies
-├── .venv/                     # Python virtual environment
-├── .python-version           # Python version (3.11)
+├── environment.yml            # Conda environment file
 ├── README.md                 # Project plan and documentation
 │
 ├── trino/                    # Trino configuration
@@ -36,15 +35,22 @@
    docker-compose up -d
    ```
 
-2. **Install dependencies:**
+2. **Setup conda environment:**
    ```bash
-   source .venv/bin/activate
+   conda env create -f environment.yml
+   conda activate dissertation
+   ```
+   
+   Or create manually:
+   ```bash
+   conda create -n dissertation python=3.11
+   conda activate dissertation
    pip install -r requirements.txt
    ```
 
 3. **Test setup:**
    ```bash
-   python scripts/test_setup.py
+   python scripts/week1_test.py
    ```
 
 ## Week 1 Goals Checklist
