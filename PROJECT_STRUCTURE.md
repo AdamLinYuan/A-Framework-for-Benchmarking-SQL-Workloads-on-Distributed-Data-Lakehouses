@@ -53,13 +53,6 @@
    python scripts/week1_test.py
    ```
 
-## Week 1 Goals Checklist
-
-- [x] Trino installed locally using Docker
-- [x] Connect via Python client and run simple queries
-- [x] ~1GB benchmark dataset (TPC-H SF1)
-- [x] Load data into Iceberg tables
-- [x] Basic performance testing setup
 
 ## Data Available
 

@@ -6,7 +6,7 @@ Simple TPC-H Test for Week 1 - Fixed and Working Version
 import trino
 
 def main():
-    print("🚀 TPC-H Week 1 Test - Clean Setup")
+    print("TPC-H Week 1 Test - Clean Setup")
     print("=" * 50)
     
     # Connect to Trino
@@ -19,20 +19,20 @@ def main():
     
     # Test 1: Basic connection
     cur.execute("SELECT 1")
-    print(f"✅ Connection: {cur.fetchone()[0]}")
+    print(f"[PASS] Connection: {cur.fetchone()[0]}")
     
     # Test 2: Available catalogs
     cur.execute("SHOW CATALOGS")
     catalogs = [c[0] for c in cur.fetchall()]
-    print(f"📁 Catalogs: {', '.join(catalogs)}")
+    print(f"Catalogs: {', '.join(catalogs)}")
     
     # Test 3: TPC-H schemas
     cur.execute("SHOW SCHEMAS FROM tpch")
     schemas = [s[0] for s in cur.fetchall()]
-    print(f"📊 TPC-H Scales: {', '.join(schemas)}")
+    print(f"TPC-H Scales: {', '.join(schemas)}")
     
     # Test 4: Row counts for SF1 (1GB)
-    print(f"\n📈 TPC-H SF1 (1GB Dataset) Overview:")
+    print(f"\nTPC-H SF1 (1GB Dataset) Overview:")
     cur.execute("SHOW TABLES FROM tpch.sf1")
     tables = cur.fetchall()
     
@@ -44,11 +44,11 @@ def main():
         total_rows += count
         print(f"  - {table_name}: {count:,} rows")
     
-    print(f"\n📊 Total rows: {total_rows:,}")
-    print(f"💾 Dataset size: ~1GB")
+    print(f"\nTotal rows: {total_rows:,}")
+    print(f"Dataset size: ~1GB")
     
     # Test 5: Simple analytical query
-    print(f"\n🔍 Sample Query - Top 5 Nations by Name:")
+    print(f"\nSample Query - Top 5 Nations by Name:")
     cur.execute("""
         SELECT name, nationkey, regionkey
         FROM tpch.sf1.nation 
@@ -60,7 +60,7 @@ def main():
         print(f"  - {row[0]} (ID: {row[1]}, Region: {row[2]})")
     
     # Test 6: Complex join query
-    print(f"\n🚀 Complex Query - Customer Orders Summary:")
+    print(f"\nComplex Query - Customer Orders Summary:")
     cur.execute("""
         SELECT 
             COUNT(DISTINCT c.custkey) as total_customers,
@@ -76,8 +76,8 @@ def main():
     print(f"  - Orders: {result[1]:,}")
     print(f"  - Avg Order: ${result[2]:.2f}")
     
-    print(f"\n✅ Week 1 Setup Complete!")
-    print(f"🎯 Ready for benchmarking framework development")
+    print(f"\n[PASS] Week 1 Setup Complete!")
+    print(f"Ready for benchmarking framework development")
     print("=" * 50)
 
 if __name__ == "__main__":
